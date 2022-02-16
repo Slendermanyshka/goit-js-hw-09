@@ -4,7 +4,7 @@ import {trimEnd } from 'lodash';
 
 const startButton = document.querySelector("[data-start]");
 const selector = document.querySelector("#datetime-picker");
-
+let globaltimer;
 const refs = {
   days: document.querySelector("[data-days]"),
   hours: document.querySelector("[data-hours]"),
@@ -37,14 +37,26 @@ startButton.addEventListener('click', timer);
 
 function timer(){
   
-    setInterval(() =>{
+    let timerID = setInterval(() =>{
       const currentTime = Date.now();
       const backTimer = selectedDate - currentTime; 
       const time = convertMS(backTimer);
+      globaltimer=backTimer;
       UiTimer(time);
       addLeadingZero(time); 
       console.log(time);
+      console.log(backTimer);
+
+      if(backTimer <=0 ){
+        clearInterval(timerID);
+        console.log("time ended");
+        const ms = 0;
+        UiTimer(convertMS(ms));
+      }
     }, 1000);
+
+    
+
   }
 
 
