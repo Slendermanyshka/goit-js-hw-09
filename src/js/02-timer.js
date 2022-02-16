@@ -45,7 +45,6 @@ function timer(){
       UiTimer(time);
       addLeadingZero(time); 
       console.log(time);
-      console.log(backTimer);
 
       if(backTimer <=0 ){
         clearInterval(timerID);
